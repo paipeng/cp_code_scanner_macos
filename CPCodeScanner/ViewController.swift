@@ -11,6 +11,9 @@ class ViewController: NSViewController {
     let captureSession: AVCaptureSession = AVCaptureSession()
     
     @IBOutlet weak var previewView: PreviewView!
+    @IBOutlet weak var devicesComboBox: NSComboBox!
+    @IBOutlet weak var startButton: NSButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -106,8 +109,7 @@ class ViewController: NSViewController {
             captureSession.commitConfiguration()
            
             
-            // Start camera
-            captureSession.startRunning()
+            
         } catch let err as NSError {
           print("---> Error adding webcam) : \(err)")
         }
@@ -122,6 +124,18 @@ class ViewController: NSViewController {
 }
 
 
+extension ViewController {
+    @IBAction func selectDevice(_ sender: NSComboBox) {
+        print("selectDevice")
+        
+    }
+    
+    @IBAction func start(_ sender: NSButton) {
+        print("start")
+        // Start camera
+        captureSession.startRunning()
+    }
+}
 
 extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
