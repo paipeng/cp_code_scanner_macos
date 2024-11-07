@@ -87,7 +87,11 @@ class ViewController: NSViewController {
             
             var previewLayer : AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             previewLayer.frame = (self.previewView.layer?.frame)!
-            
+            previewLayer.frame.origin.x = 0
+            previewLayer.frame.origin.y = 0
+
+            print("prevView layer frame: \(previewLayer.frame)")
+
             // Add previewLayer into custom view
             self.previewView.layer?.addSublayer(previewLayer)
             
