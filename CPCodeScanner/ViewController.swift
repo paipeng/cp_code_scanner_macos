@@ -122,6 +122,35 @@ class ViewController: NSViewController {
 extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         print("didOutput")
+        
+        guard let cvBuffer: CVImageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        print("sampleBuffer size: \(CVPixelBufferGetWidth(cvBuffer)) - \(CVPixelBufferGetHeight(cvBuffer))")
+
+        
+        //get a CIImage out of the CVImageBuffer
+        let ciImage = CIImage(cvImageBuffer: cvBuffer)
+        
+        let rep = NSCIImageRep(ciImage: ciImage)
+        let image = NSImage(size: rep.size)
+        image.addRepresentation(rep)
+        
+        /*
+        let temporaryContext = CIContext(cgContext: nil)
+        let videoImage: CGImageRef = temporaryContext.crea
+        [temporaryContext
+                                 createCGImage:ciImage
+                                 fromRect:CGRectMake(0, 0,
+                                 ,
+                                 CVPixelBufferGetHeight(imageBuffer))];
+
+               UIImage *image = [[UIImage alloc] initWithCGImage:videoImage];
+        */
+        
+        //get UIImage out of CIImage
+        let qrData: String? = Util().decode(ciImage: ciImage)
+        print("decoded qrData: \(qrData ?? "no decoded")")
     }
     
     func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {

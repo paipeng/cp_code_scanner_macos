@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7325064B2CDC8FB5004E9C21 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325064A2CDC8FB5004E9C21 /* Util.swift */; };
 		73EBA1612CDC4DBB00C26DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */; };
 		73EBA1632CDC4DBB00C26DD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */; };
 		73EBA1662CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1642CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7325064A2CDC8FB5004E9C21 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		73EBA15D2CDC4DBB00C26DD9 /* CPCodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CPCodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				73EBA16C2CDC4DBE00C26DD9 /* CPCodeScanner.entitlements */,
 				73EBA1642CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld */,
 				73EBA18E2CDC645400C26DD9 /* PreviewView.swift */,
+				7325064A2CDC8FB5004E9C21 /* Util.swift */,
 			);
 			path = CPCodeScanner;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			files = (
 				73EBA1632CDC4DBB00C26DD9 /* ViewController.swift in Sources */,
 				73EBA18F2CDC645400C26DD9 /* PreviewView.swift in Sources */,
+				7325064B2CDC8FB5004E9C21 /* Util.swift in Sources */,
 				73EBA1662CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld in Sources */,
 				73EBA1612CDC4DBB00C26DD9 /* AppDelegate.swift in Sources */,
 			);
