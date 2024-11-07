@@ -9,6 +9,7 @@ import Cocoa
 import AVFoundation
 class ViewController: NSViewController {
     let captureSession: AVCaptureSession = AVCaptureSession()
+    var devices: [AVCaptureDevice]? = nil
     
     @IBOutlet weak var previewView: PreviewView!
     @IBOutlet weak var devicesComboBox: NSComboBox!
@@ -31,13 +32,13 @@ class ViewController: NSViewController {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
             case .authorized: // The user has previously granted access to the camera.
                 print("authorized")
-                self.setupCaptureSession()
+                self.initVideoDevices()
             
             case .notDetermined: // The user has not yet been asked for camera access.
                 print("notDetermined")
                 AVCaptureDevice.requestAccess(for: .video) { granted in
                     if granted {
-                        self.setupCaptureSession()
+                        self.initVideoDevices()
                     }
                 }
             
@@ -50,28 +51,26 @@ class ViewController: NSViewController {
                 return
             }
         }
-
-    func setupCaptureSession() {
-        let devices = AVCaptureDevice.devices(for: AVMediaType.video)
+    
+    func initVideoDevices() {
+        self.devices = AVCaptureDevice.devices(for: AVMediaType.video)
         
-        var webcam: AVCaptureDevice? = nil
-        // Find the FaceTime HD camera object
-        for device in devices {
+        self.devicesComboBox.removeAllItems()
+        for device in devices! {
             print(device)
-            
-            // Camera object found and assign it to captureDevice
             if ((device as AnyObject).hasMediaType(AVMediaType.video)) {
-                print(device)
-                webcam = device as? AVCaptureDevice
+                print("video device found: \(device)")
+                self.devicesComboBox.addItem(withObjectValue: device.localizedName)
             }
         }
+    }
+
+    func setupCaptureSession(device: AVCaptureDevice) {
         
         //let webcam = devices[0] as? AVCaptureDevice
-        guard (webcam != nil) else {
-            return
-        }
+        
         do {
-            let webcamInput: AVCaptureDeviceInput = try AVCaptureDeviceInput(device: webcam!)
+            let webcamInput: AVCaptureDeviceInput = try AVCaptureDeviceInput(device: device)
             captureSession.beginConfiguration()
           
             if captureSession.canAddInput(webcamInput){
@@ -108,7 +107,7 @@ class ViewController: NSViewController {
             
             captureSession.commitConfiguration()
            
-            
+            captureSession.startRunning()
             
         } catch let err as NSError {
           print("---> Error adding webcam) : \(err)")
@@ -128,12 +127,41 @@ extension ViewController {
     @IBAction func selectDevice(_ sender: NSComboBox) {
         print("selectDevice")
         
+        /*
+        var webcam: AVCaptureDevice? = nil
+        // Find the FaceTime HD camera object
+        for device in self.devices! {
+            print(device)
+            // Camera object found and assign it to captureDevice
+            if ((device as AnyObject).hasMediaType(AVMediaType.video)) {
+                print(device)
+                webcam = device as? AVCaptureDevice
+            }
+        }
+         */
+        
+
+        
     }
     
     @IBAction func start(_ sender: NSButton) {
         print("start")
         // Start camera
-        captureSession.startRunning()
+        
+        var webcam: AVCaptureDevice? = nil
+        for device in self.devices! {
+            print(device)
+            if self.devicesComboBox.indexOfSelectedItem == self.devices!.firstIndex(of: device) {
+                print("selected device found: \(self.devicesComboBox.indexOfSelectedItem)")
+                webcam = device as? AVCaptureDevice
+                break
+            }
+        }
+        
+        guard (webcam != nil) else {
+            return
+        }
+        self.setupCaptureSession(device: webcam!)
     }
 }
 
