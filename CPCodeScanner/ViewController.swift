@@ -19,6 +19,7 @@ class ViewController: NSViewController {
         
         self.askPermissionsForCameraFeed()
         
+        self.previewView.wantsLayer = true
         self.previewView.layer?.backgroundColor = NSColor.red.cgColor
         print("previewView frame: \(self.previewView.frame)")
     }
