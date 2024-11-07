@@ -15,6 +15,7 @@
 		73EBA1762CDC4DBE00C26DD9 /* CPCodeScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1752CDC4DBE00C26DD9 /* CPCodeScannerTests.swift */; };
 		73EBA1802CDC4DBF00C26DD9 /* CPCodeScannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA17F2CDC4DBF00C26DD9 /* CPCodeScannerUITests.swift */; };
 		73EBA1822CDC4DBF00C26DD9 /* CPCodeScannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1812CDC4DBF00C26DD9 /* CPCodeScannerUITestsLaunchTests.swift */; };
+		73EBA18F2CDC645400C26DD9 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA18E2CDC645400C26DD9 /* PreviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		73EBA17B2CDC4DBF00C26DD9 /* CPCodeScannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CPCodeScannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EBA17F2CDC4DBF00C26DD9 /* CPCodeScannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPCodeScannerUITests.swift; sourceTree = "<group>"; };
 		73EBA1812CDC4DBF00C26DD9 /* CPCodeScannerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPCodeScannerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		73EBA18E2CDC645400C26DD9 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				73EBA1692CDC4DBE00C26DD9 /* Main.storyboard */,
 				73EBA16C2CDC4DBE00C26DD9 /* CPCodeScanner.entitlements */,
 				73EBA1642CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld */,
+				73EBA18E2CDC645400C26DD9 /* PreviewView.swift */,
 			);
 			path = CPCodeScanner;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EBA1632CDC4DBB00C26DD9 /* ViewController.swift in Sources */,
+				73EBA18F2CDC645400C26DD9 /* PreviewView.swift in Sources */,
 				73EBA1662CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld in Sources */,
 				73EBA1612CDC4DBB00C26DD9 /* AppDelegate.swift in Sources */,
 			);

@@ -10,6 +10,7 @@ import AVFoundation
 class ViewController: NSViewController {
     let captureSession: AVCaptureSession = AVCaptureSession()
     
+    @IBOutlet weak var previewView: NSView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,6 +18,9 @@ class ViewController: NSViewController {
         
         
         self.askPermissionsForCameraFeed()
+        
+        self.previewView.layer?.backgroundColor = NSColor.red.cgColor
+        print("previewView frame: \(self.previewView.frame)")
     }
     
     func askPermissionsForCameraFeed() {
