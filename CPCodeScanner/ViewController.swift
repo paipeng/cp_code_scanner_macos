@@ -91,6 +91,14 @@ class ViewController: NSViewController {
             // Add previewLayer into custom view
             self.previewView.layer?.addSublayer(previewLayer)
             
+            
+            let videoOutput = AVCaptureVideoDataOutput()
+            if captureSession.canAddOutput(videoOutput) {
+                captureSession.addOutput(videoOutput)
+            }
+            let queue = DispatchQueue.init(label: "preview_queue", target: nil)
+            videoOutput.setSampleBufferDelegate(self, queue: queue)
+            
             captureSession.commitConfiguration()
            
             
@@ -109,3 +117,16 @@ class ViewController: NSViewController {
 
 }
 
+
+
+extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        print("didOutput")
+    }
+    
+    func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        print("captureOutput didDrop")
+        
+    }
+    
+}
