@@ -54,7 +54,14 @@ class ViewController: NSViewController {
             if captureSession.canAddInput(webcamInput){
                 captureSession.addInput(webcamInput)
                 print("---> Adding webcam input")
+                
+                
+                let photoOutput = AVCapturePhotoOutput()
+                guard captureSession.canAddOutput(photoOutput) else { return }
+                captureSession.sessionPreset = .photo
+                captureSession.addOutput(photoOutput)
             }
+            captureSession.commitConfiguration()
            
         } catch let err as NSError {
           print("---> Error adding webcam) : \(err)")
