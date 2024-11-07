@@ -43,7 +43,7 @@ class ViewController: NSViewController {
         }
 
     func setupCaptureSession() {
-        let devices = AVCaptureDevice.devices()//for: AVMediaType.video)
+        let devices = AVCaptureDevice.devices(for: AVMediaType.video)
         let webcam = devices[0] as? AVCaptureDevice
         
         do {
@@ -55,7 +55,7 @@ class ViewController: NSViewController {
           }
            */
         } catch let err as NSError {
-          print("---> Error adding webcam)")
+          print("---> Error adding webcam) : \(err)")
         }
     }
     override var representedObject: Any? {
