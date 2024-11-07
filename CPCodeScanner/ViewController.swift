@@ -8,7 +8,8 @@
 import Cocoa
 import AVFoundation
 class ViewController: NSViewController {
-
+    let captureSession: AVCaptureSession = AVCaptureSession()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,13 +48,14 @@ class ViewController: NSViewController {
         let webcam = devices[0] as? AVCaptureDevice
         
         do {
-          let webcamInput: AVCaptureDeviceInput = try AVCaptureDeviceInput(device: webcam!)
-          /*
-            if videoSession.canAddInput(webcamInput){
-              videoSession.addInput(webcamInput)
-              print("---> Adding webcam input")
-          }
-           */
+            let webcamInput: AVCaptureDeviceInput = try AVCaptureDeviceInput(device: webcam!)
+            captureSession.beginConfiguration()
+          
+            if captureSession.canAddInput(webcamInput){
+                captureSession.addInput(webcamInput)
+                print("---> Adding webcam input")
+            }
+           
         } catch let err as NSError {
           print("---> Error adding webcam) : \(err)")
         }
