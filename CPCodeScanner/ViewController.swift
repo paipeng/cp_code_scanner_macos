@@ -50,8 +50,23 @@ class ViewController: NSViewController {
 
     func setupCaptureSession() {
         let devices = AVCaptureDevice.devices(for: AVMediaType.video)
-        let webcam = devices[0] as? AVCaptureDevice
         
+        var webcam: AVCaptureDevice? = nil
+        // Find the FaceTime HD camera object
+        for device in devices {
+            print(device)
+            
+            // Camera object found and assign it to captureDevice
+            if ((device as AnyObject).hasMediaType(AVMediaType.video)) {
+                print(device)
+                webcam = device as? AVCaptureDevice
+            }
+        }
+        
+        //let webcam = devices[0] as? AVCaptureDevice
+        guard (webcam != nil) else {
+            return
+        }
         do {
             let webcamInput: AVCaptureDeviceInput = try AVCaptureDeviceInput(device: webcam!)
             captureSession.beginConfiguration()
@@ -66,8 +81,21 @@ class ViewController: NSViewController {
                 captureSession.sessionPreset = .photo
                 captureSession.addOutput(photoOutput)
             }
+            
+            // setup preview
+            
+            
+            var previewLayer : AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            previewLayer.frame = (self.previewView.layer?.frame)!
+            
+            // Add previewLayer into custom view
+            self.previewView.layer?.addSublayer(previewLayer)
+            
             captureSession.commitConfiguration()
            
+            
+            // Start camera
+            captureSession.startRunning()
         } catch let err as NSError {
           print("---> Error adding webcam) : \(err)")
         }
