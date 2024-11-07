@@ -21,4 +21,20 @@ class PreviewView: NSView {
         return layer as! AVCaptureVideoPreviewLayer
     }
      */
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        // other code
+        self.layer = CALayer()
+        //self.wantsLayer = true
+        self.layer?.backgroundColor = NSColor.red.cgColor
+    }
+    
+    //or customized constructor/ init
+    init(frame frameRect: NSRect, otherInfo:Int) {
+        super.init(frame:frameRect);
+    }
 }
