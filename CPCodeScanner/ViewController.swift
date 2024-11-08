@@ -254,6 +254,12 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
 extension ViewController : ScanModeDelegate {
     func decodeQRCode(_ qrData: String) {
         print("decodeQRCode: \(qrData)")
-        qrDataTextField.stringValue = qrData
+        
+        
+        Task {
+            await MainActor.run { [weak self] in
+                qrDataTextField.stringValue = qrData
+            }
+        }
     }
 }
