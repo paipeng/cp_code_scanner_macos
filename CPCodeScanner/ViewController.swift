@@ -11,10 +11,12 @@ class ViewController: NSViewController {
     let captureSession: AVCaptureSession = AVCaptureSession()
     var devices: [AVCaptureDevice]? = nil
     var deviceInput: AVCaptureDeviceInput? = nil
+    let photoOutput = AVCapturePhotoOutput()
     
     @IBOutlet weak var previewView: PreviewView!
     @IBOutlet weak var devicesComboBox: NSComboBox!
     @IBOutlet weak var startButton: NSButton!
+    @IBOutlet weak var captureButton: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +74,7 @@ class ViewController: NSViewController {
             startButton.isEnabled = true
         }
         startButton.title = NSLocalizedString("start", comment: "")
+        captureButton.title = NSLocalizedString("capture", comment: "")
         self.setupCaptureSession()
     }
 
@@ -84,7 +87,7 @@ class ViewController: NSViewController {
             // skip
             
             // photo output
-            let photoOutput = AVCapturePhotoOutput()
+            
             guard captureSession.canAddOutput(photoOutput) else { return }
             captureSession.sessionPreset = .photo
             captureSession.addOutput(photoOutput)
@@ -196,6 +199,16 @@ extension ViewController {
             self.startCamera()
         }
     }
+    
+    @IBAction func capture(_ sender: NSButton) {
+        print("capture")
+        if self.captureSession.isRunning {
+            
+            let photoSettings: AVCapturePhotoSettings  = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg, AVVideoCompressionPropertiesKey: [AVVideoQualityKey: 100]])
+            
+            self.photoOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+        }
+    }
 }
 
 extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate {
@@ -239,4 +252,33 @@ extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate {
         
     }
     
+}
+
+
+extension ViewController: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        print("photoOutput didFinishProcessingPhoto: \(photo.photoCount)")
+        guard error == nil else {
+            print("Fail to capture photo: \(String(describing: error))")
+            return
+        }
+        
+        //let pixelBuffer: CVPixelBuffer =
+        let data = photo.fileDataRepresentation()
+        
+        //let rep = NSCIImageRep(ciImage: ciImage)
+        //let image = NSImage(size: rep.size)
+        //image.addRepresentation(rep)
+        let image = NSImage(data: data!)
+        print("image size: \(image!.size)")
+        
+    }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishCaptureFor resolvedSettings: AVCaptureResolvedPhotoSettings, error: Error?) {
+        print("photoOutput didFinishCaptureFor")
+        guard error == nil else {
+                    print("Error in capture process: \(String(describing: error))")
+                    return
+                }
+    }
 }

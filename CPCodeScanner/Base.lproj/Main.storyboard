@@ -741,6 +741,17 @@
                                     <action selector="start:" target="XfG-lQ-9wD" id="Qau-WI-iWA"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ppO-M5-buh">
+                                <rect key="frame" x="192" y="5" width="75" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gAf-X3-Ptm">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="capture:" target="XfG-lQ-9wD" id="afs-T7-MHr"/>
+                                </connections>
+                            </button>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bgc-BG-Ga5">
                                 <rect key="frame" x="18" y="52" width="37" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -753,6 +764,7 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="captureButton" destination="ppO-M5-buh" id="rzd-7s-HFb"/>
                         <outlet property="devicesComboBox" destination="33j-Ln-bUP" id="GRl-cc-Qt0"/>
                         <outlet property="previewView" destination="LHL-ir-q9C" id="coT-G6-N0D"/>
                         <outlet property="startButton" destination="wMG-7d-K2s" id="GRH-yJ-niK"/>
