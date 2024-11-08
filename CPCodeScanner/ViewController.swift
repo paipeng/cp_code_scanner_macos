@@ -66,9 +66,6 @@ class ViewController: NSViewController {
     }
 
     func setupCaptureSession(device: AVCaptureDevice) {
-        
-        //let webcam = devices[0] as? AVCaptureDevice
-        
         do {
             let webcamInput: AVCaptureDeviceInput = try AVCaptureDeviceInput(device: device)
             captureSession.beginConfiguration()
@@ -126,21 +123,6 @@ class ViewController: NSViewController {
 extension ViewController {
     @IBAction func selectDevice(_ sender: NSComboBox) {
         print("selectDevice")
-        
-        /*
-        var webcam: AVCaptureDevice? = nil
-        // Find the FaceTime HD camera object
-        for device in self.devices! {
-            print(device)
-            // Camera object found and assign it to captureDevice
-            if ((device as AnyObject).hasMediaType(AVMediaType.video)) {
-                print(device)
-                webcam = device as? AVCaptureDevice
-            }
-        }
-         */
-        
-
         
     }
     
