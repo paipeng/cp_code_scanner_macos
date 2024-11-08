@@ -10,6 +10,8 @@ import AVFoundation
 class ViewController: NSViewController {
     let captureSession: AVCaptureSession = AVCaptureSession()
     var devices: [AVCaptureDevice]? = nil
+    var deviceInput: AVCaptureDeviceInput? = nil
+    var photoOutput: AVCapturePhotoOutput? = nil
     
     @IBOutlet weak var previewView: PreviewView!
     @IBOutlet weak var devicesComboBox: NSComboBox!
@@ -74,20 +76,32 @@ class ViewController: NSViewController {
     }
 
     func setupCaptureSession(device: AVCaptureDevice) {
+        print("setupCaptureSession: \(device.localizedName)")
         do {
-            let webcamInput: AVCaptureDeviceInput = try AVCaptureDeviceInput(device: device)
             captureSession.beginConfiguration()
-          
-            if captureSession.canAddInput(webcamInput){
-                captureSession.addInput(webcamInput)
+            
+            if self.deviceInput != nil {
+                self.captureSession.removeInput(self.deviceInput!)
+            }
+            self.deviceInput = try AVCaptureDeviceInput(device: device)
+            guard (self.deviceInput != nil) else {
+                print("deviceInput invalid -> return")
+                return
+            }
+            if captureSession.canAddInput(self.deviceInput!){
+                captureSession.addInput(self.deviceInput!)
                 print("---> Adding webcam input")
                 
-                
-                let photoOutput = AVCapturePhotoOutput()
-                guard captureSession.canAddOutput(photoOutput) else { return }
-                captureSession.sessionPreset = .photo
-                captureSession.addOutput(photoOutput)
+                if self.photoOutput == nil {
+                    self.photoOutput = AVCapturePhotoOutput()
+                    guard captureSession.canAddOutput(self.photoOutput!) else { return }
+                    captureSession.sessionPreset = .photo
+                    captureSession.addOutput(self.photoOutput!)
+                } else {
+                    print("photoOutput has already added to capture session")
+                }
             }
+            
             
             // setup preview
             
@@ -112,7 +126,6 @@ class ViewController: NSViewController {
             
             captureSession.commitConfiguration()
            
-            captureSession.startRunning()
             
         } catch let err as NSError {
           print("---> Error adding webcam) : \(err)")
@@ -124,13 +137,37 @@ class ViewController: NSViewController {
         }
     }
 
+    func startCamera() {
+        print("selectDevice: \(self.devicesComboBox.indexOfSelectedItem)")
+
+        var webcam: AVCaptureDevice? = nil
+        
+        for device in self.devices! {
+            print(device)
+            if self.devicesComboBox.indexOfSelectedItem == self.devices!.firstIndex(of: device) {
+                print("selected device found: \(self.devicesComboBox.indexOfSelectedItem)")
+                webcam = device as? AVCaptureDevice
+                break
+            }
+        }
+        
+        guard (webcam != nil) else {
+            return
+        }
+        self.setupCaptureSession(device: webcam!)
+        self.captureSession.startRunning()
+    }
+    
+    func stopCamera() {
+        self.captureSession.stopRunning()
+    }
 
 }
 
 
 extension ViewController {
     @IBAction func selectDevice(_ sender: NSComboBox) {
-        print("selectDevice")
+        print("selectDevice: \(sender.indexOfSelectedItem)")
         
     }
     
@@ -139,37 +176,23 @@ extension ViewController {
         if self.captureSession.isRunning {
             
             startButton.title = NSLocalizedString("start", comment: "")
-            self.captureSession.stopRunning()
+            self.stopCamera()
         } else {
             // Start camera
-            
-            var webcam: AVCaptureDevice? = nil
-            for device in self.devices! {
-                print(device)
-                if self.devicesComboBox.indexOfSelectedItem == self.devices!.firstIndex(of: device) {
-                    print("selected device found: \(self.devicesComboBox.indexOfSelectedItem)")
-                    webcam = device as? AVCaptureDevice
-                    break
-                }
-            }
-            
-            guard (webcam != nil) else {
-                return
-            }
-            self.setupCaptureSession(device: webcam!)
             startButton.title = NSLocalizedString("stop", comment: "")
+            self.startCamera()
         }
     }
 }
 
 extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        print("didOutput")
+        //print("didOutput")
         
         guard let cvBuffer: CVImageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
-        print("sampleBuffer size: \(CVPixelBufferGetWidth(cvBuffer)) - \(CVPixelBufferGetHeight(cvBuffer))")
+        //print("sampleBuffer size: \(CVPixelBufferGetWidth(cvBuffer)) - \(CVPixelBufferGetHeight(cvBuffer))")
 
         
         //get a CIImage out of the CVImageBuffer
@@ -193,7 +216,7 @@ extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate {
         
         //get UIImage out of CIImage
         let qrData: String? = Util().decode(ciImage: ciImage)
-        print("decoded qrData: \(qrData ?? "no decoded")")
+        //print("decoded qrData: \(qrData ?? "no decoded")")
     }
     
     func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
