@@ -12,9 +12,9 @@ import AppKit
 
 
 class BaseScanMode : NSObject {
-    
+    var overlay: BaseOverlay? = nil
     weak var delegate: ScanModeDelegate?
-    init(scanModeName: String, delegate: ScanModeDelegate) {
+    init(scanModeName: String, overlayRect: NSRect, delegate: ScanModeDelegate) {
         self.delegate = delegate
     }
     
@@ -40,5 +40,9 @@ class BaseScanMode : NSObject {
     
     func decode(image: CIImage) {
         
+    }
+    
+    func getOverlay() -> BaseOverlay? {
+        return overlay
     }
 }

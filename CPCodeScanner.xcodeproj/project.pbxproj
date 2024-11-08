@@ -13,6 +13,9 @@
 		732506552CDDBCDB004E9C21 /* ScanModeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732506542CDDBCDB004E9C21 /* ScanModeDelegate.swift */; };
 		732506572CDDEBCF004E9C21 /* BaseScanMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732506562CDDEBCF004E9C21 /* BaseScanMode.swift */; };
 		732506592CDDEBDF004E9C21 /* FaceScanMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732506582CDDEBDF004E9C21 /* FaceScanMode.swift */; };
+		7325065C2CDDF8B5004E9C21 /* BaseOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325065B2CDDF8B5004E9C21 /* BaseOverlay.swift */; };
+		7325065E2CDDF8C7004E9C21 /* QRCodeOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325065D2CDDF8C7004E9C21 /* QRCodeOverlay.swift */; };
+		732506602CDDF8DA004E9C21 /* FaceOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325065F2CDDF8DA004E9C21 /* FaceOverlay.swift */; };
 		73EBA1612CDC4DBB00C26DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */; };
 		73EBA1632CDC4DBB00C26DD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */; };
 		73EBA1662CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1642CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld */; };
@@ -49,6 +52,9 @@
 		732506542CDDBCDB004E9C21 /* ScanModeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScanModeDelegate.swift; path = scanmode/ScanModeDelegate.swift; sourceTree = "<group>"; };
 		732506562CDDEBCF004E9C21 /* BaseScanMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseScanMode.swift; path = scanmode/BaseScanMode.swift; sourceTree = "<group>"; };
 		732506582CDDEBDF004E9C21 /* FaceScanMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FaceScanMode.swift; path = scanmode/FaceScanMode.swift; sourceTree = "<group>"; };
+		7325065B2CDDF8B5004E9C21 /* BaseOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseOverlay.swift; path = scanmode/overlay/BaseOverlay.swift; sourceTree = "<group>"; };
+		7325065D2CDDF8C7004E9C21 /* QRCodeOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QRCodeOverlay.swift; path = scanmode/overlay/QRCodeOverlay.swift; sourceTree = "<group>"; };
+		7325065F2CDDF8DA004E9C21 /* FaceOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FaceOverlay.swift; path = scanmode/overlay/FaceOverlay.swift; sourceTree = "<group>"; };
 		73EBA15D2CDC4DBB00C26DD9 /* CPCodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CPCodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -92,12 +98,23 @@
 		732506512CDDB5B7004E9C21 /* scanmode */ = {
 			isa = PBXGroup;
 			children = (
+				7325065A2CDDF896004E9C21 /* overlay */,
 				732506522CDDB634004E9C21 /* QRCodeScanMode.swift */,
 				732506542CDDBCDB004E9C21 /* ScanModeDelegate.swift */,
 				732506562CDDEBCF004E9C21 /* BaseScanMode.swift */,
 				732506582CDDEBDF004E9C21 /* FaceScanMode.swift */,
 			);
 			name = scanmode;
+			sourceTree = "<group>";
+		};
+		7325065A2CDDF896004E9C21 /* overlay */ = {
+			isa = PBXGroup;
+			children = (
+				7325065B2CDDF8B5004E9C21 /* BaseOverlay.swift */,
+				7325065D2CDDF8C7004E9C21 /* QRCodeOverlay.swift */,
+				7325065F2CDDF8DA004E9C21 /* FaceOverlay.swift */,
+			);
+			name = overlay;
 			sourceTree = "<group>";
 		};
 		73EBA1542CDC4DBB00C26DD9 = {
@@ -286,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EBA1632CDC4DBB00C26DD9 /* ViewController.swift in Sources */,
+				7325065C2CDDF8B5004E9C21 /* BaseOverlay.swift in Sources */,
 				732506552CDDBCDB004E9C21 /* ScanModeDelegate.swift in Sources */,
 				732506572CDDEBCF004E9C21 /* BaseScanMode.swift in Sources */,
 				732506592CDDEBDF004E9C21 /* FaceScanMode.swift in Sources */,
@@ -293,6 +311,8 @@
 				7325064B2CDC8FB5004E9C21 /* Util.swift in Sources */,
 				732506532CDDB634004E9C21 /* QRCodeScanMode.swift in Sources */,
 				73EBA1662CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld in Sources */,
+				732506602CDDF8DA004E9C21 /* FaceOverlay.swift in Sources */,
+				7325065E2CDDF8C7004E9C21 /* QRCodeOverlay.swift in Sources */,
 				73EBA1612CDC4DBB00C26DD9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

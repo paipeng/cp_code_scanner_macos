@@ -10,6 +10,14 @@ import AVFoundation
 import AppKit
 
 class QRCodeScanMode : BaseScanMode {
+    override init(scanModeName: String, overlayRect: NSRect, delegate: ScanModeDelegate) {
+        super.init(scanModeName: scanModeName, overlayRect: overlayRect, delegate: delegate)
+        overlay = QRCodeOverlay(frame: overlayRect)
+        
+        overlay!.wantsLayer = true
+        overlay!.layer?.backgroundColor = NSColor.green.cgColor
+    }
+    
     override func captureOutput(sampleBuffer: CMSampleBuffer) {
         super.captureOutput(sampleBuffer: sampleBuffer)
     }

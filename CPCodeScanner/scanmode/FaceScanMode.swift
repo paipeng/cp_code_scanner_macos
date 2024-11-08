@@ -11,6 +11,14 @@ import AppKit
 
 
 class FaceScanMode : BaseScanMode {
+    override init(scanModeName: String, overlayRect: NSRect, delegate: ScanModeDelegate) {
+        super.init(scanModeName: scanModeName, overlayRect: overlayRect, delegate: delegate)
+        overlay = FaceOverlay(frame: overlayRect)
+        
+        overlay!.wantsLayer = true
+        overlay!.layer?.backgroundColor = NSColor.blue.cgColor
+    }
+    
     override func captureOutput(sampleBuffer: CMSampleBuffer) {
         print("FaceScanMode caaptureOutput")
         super.captureOutput(sampleBuffer: sampleBuffer)

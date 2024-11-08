@@ -28,8 +28,11 @@ class ViewController: NSViewController {
         // Do any additional setup after loading the view.
         
         scanResultTabView.delegate = self
-        
-        scanMode = QRCodeScanMode(scanModeName: "", delegate: self)
+        var rect = previewView.frame;
+        rect.origin.x = 0
+        rect.origin.y = 0
+        scanMode = QRCodeScanMode(scanModeName: "", overlayRect: rect, delegate: self)
+        previewView.addOverlay(overlay: (scanMode?.getOverlay())!)
         self.askPermissionsForCameraFeed()
         
         //self.previewView.wantsLayer = true
@@ -259,11 +262,18 @@ extension ViewController: NSTabViewDelegate {
         let index = self.scanResultTabView.indexOfTabViewItem(tabViewItem!)
         print("selected tabView index: \(index)")
         
+        scanMode!.getOverlay()?.removeFromSuperview()
+        var rect = previewView.frame;
+        rect.origin.x = 0
+        rect.origin.y = 0
+        
         if index == 0 {
-            scanMode = QRCodeScanMode(scanModeName: "QrCode", delegate: self)
+            scanMode = QRCodeScanMode(scanModeName: "QrCode", overlayRect: rect, delegate: self)
         } else {
-            scanMode = FaceScanMode(scanModeName: "Face", delegate: self)
+            scanMode = FaceScanMode(scanModeName: "Face", overlayRect: rect, delegate: self)
         }
+        
+        previewView.addOverlay(overlay: (scanMode?.getOverlay())!)
     }
 }
 

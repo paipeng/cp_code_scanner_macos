@@ -30,11 +30,15 @@ class PreviewView: NSView {
         // other code
         self.layer = CALayer()
         //self.wantsLayer = true
-        self.layer?.backgroundColor = NSColor.red.cgColor
+        //self.layer?.backgroundColor = NSColor.red.cgColor
     }
     
     //or customized constructor/ init
     init(frame frameRect: NSRect, otherInfo:Int) {
         super.init(frame:frameRect);
+    }
+    
+    func addOverlay(overlay: BaseOverlay) {        
+        self.addSubview(overlay)
     }
 }
