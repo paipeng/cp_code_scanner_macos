@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7325064B2CDC8FB5004E9C21 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325064A2CDC8FB5004E9C21 /* Util.swift */; };
+		7325064D2CDD91AE004E9C21 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7325064C2CDD91AE004E9C21 /* Localizable.strings */; };
 		73EBA1612CDC4DBB00C26DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */; };
 		73EBA1632CDC4DBB00C26DD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */; };
 		73EBA1662CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1642CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		7325064A2CDC8FB5004E9C21 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		7325064C2CDD91AE004E9C21 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		73EBA15D2CDC4DBB00C26DD9 /* CPCodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CPCodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				73EBA1642CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld */,
 				73EBA18E2CDC645400C26DD9 /* PreviewView.swift */,
 				7325064A2CDC8FB5004E9C21 /* Util.swift */,
+				7325064C2CDD91AE004E9C21 /* Localizable.strings */,
 			);
 			path = CPCodeScanner;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EBA1682CDC4DBE00C26DD9 /* Assets.xcassets in Resources */,
+				7325064D2CDD91AE004E9C21 /* Localizable.strings in Resources */,
 				73EBA16B2CDC4DBE00C26DD9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

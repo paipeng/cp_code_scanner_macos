@@ -64,6 +64,13 @@ class ViewController: NSViewController {
                 self.devicesComboBox.selectItem(at: 0)
             }
         }
+        
+        if self.devicesComboBox.numberOfItems == 0 {
+            startButton.isEnabled = false
+        } else {
+            startButton.isEnabled = true
+        }
+        startButton.title = NSLocalizedString("start", comment: "")
     }
 
     func setupCaptureSession(device: AVCaptureDevice) {
@@ -129,22 +136,29 @@ extension ViewController {
     
     @IBAction func start(_ sender: NSButton) {
         print("start")
-        // Start camera
-        
-        var webcam: AVCaptureDevice? = nil
-        for device in self.devices! {
-            print(device)
-            if self.devicesComboBox.indexOfSelectedItem == self.devices!.firstIndex(of: device) {
-                print("selected device found: \(self.devicesComboBox.indexOfSelectedItem)")
-                webcam = device as? AVCaptureDevice
-                break
+        if self.captureSession.isRunning {
+            
+            startButton.title = NSLocalizedString("start", comment: "")
+            self.captureSession.stopRunning()
+        } else {
+            // Start camera
+            
+            var webcam: AVCaptureDevice? = nil
+            for device in self.devices! {
+                print(device)
+                if self.devicesComboBox.indexOfSelectedItem == self.devices!.firstIndex(of: device) {
+                    print("selected device found: \(self.devicesComboBox.indexOfSelectedItem)")
+                    webcam = device as? AVCaptureDevice
+                    break
+                }
             }
+            
+            guard (webcam != nil) else {
+                return
+            }
+            self.setupCaptureSession(device: webcam!)
+            startButton.title = NSLocalizedString("stop", comment: "")
         }
-        
-        guard (webcam != nil) else {
-            return
-        }
-        self.setupCaptureSession(device: webcam!)
     }
 }
 

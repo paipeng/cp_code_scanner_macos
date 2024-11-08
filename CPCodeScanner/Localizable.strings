@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  CPCodeScanner
+
+  Created by Pai Peng on 08.11.24.
+  
+*/
+
+"start" = "Start";
+"stop" = "Stop";
