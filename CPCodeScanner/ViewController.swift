@@ -11,7 +11,6 @@ class ViewController: NSViewController {
     let captureSession: AVCaptureSession = AVCaptureSession()
     var devices: [AVCaptureDevice]? = nil
     var deviceInput: AVCaptureDeviceInput? = nil
-    var photoOutput: AVCapturePhotoOutput? = nil
     
     @IBOutlet weak var previewView: PreviewView!
     @IBOutlet weak var devicesComboBox: NSComboBox!
@@ -73,40 +72,27 @@ class ViewController: NSViewController {
             startButton.isEnabled = true
         }
         startButton.title = NSLocalizedString("start", comment: "")
+        self.setupCaptureSession()
     }
 
-    func setupCaptureSession(device: AVCaptureDevice) {
-        print("setupCaptureSession: \(device.localizedName)")
+    func setupCaptureSession() {
+        print("setupCaptureSession")
         do {
             captureSession.beginConfiguration()
             
-            if self.deviceInput != nil {
-                self.captureSession.removeInput(self.deviceInput!)
-            }
-            self.deviceInput = try AVCaptureDeviceInput(device: device)
-            guard (self.deviceInput != nil) else {
-                print("deviceInput invalid -> return")
-                return
-            }
-            if captureSession.canAddInput(self.deviceInput!){
-                captureSession.addInput(self.deviceInput!)
-                print("---> Adding webcam input")
-                
-                if self.photoOutput == nil {
-                    self.photoOutput = AVCapturePhotoOutput()
-                    guard captureSession.canAddOutput(self.photoOutput!) else { return }
-                    captureSession.sessionPreset = .photo
-                    captureSession.addOutput(self.photoOutput!)
-                } else {
-                    print("photoOutput has already added to capture session")
-                }
-            }
+            // add device
+            // skip
             
+            // photo output
+            let photoOutput = AVCapturePhotoOutput()
+            guard captureSession.canAddOutput(photoOutput) else { return }
+            captureSession.sessionPreset = .photo
+            captureSession.addOutput(photoOutput)
             
             // setup preview
             
             
-            var previewLayer : AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            let previewLayer : AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             previewLayer.frame = (self.previewView.layer?.frame)!
             previewLayer.frame.origin.x = 0
             previewLayer.frame.origin.y = 0
@@ -117,6 +103,7 @@ class ViewController: NSViewController {
             self.previewView.layer?.addSublayer(previewLayer)
             
             
+            // video output
             let videoOutput = AVCaptureVideoDataOutput()
             if captureSession.canAddOutput(videoOutput) {
                 captureSession.addOutput(videoOutput)
@@ -128,7 +115,7 @@ class ViewController: NSViewController {
            
             
         } catch let err as NSError {
-          print("---> Error adding webcam) : \(err)")
+          print("---> Error setupCaptureSession) : \(err)")
         }
     }
     override var representedObject: Any? {
@@ -138,7 +125,7 @@ class ViewController: NSViewController {
     }
 
     func startCamera() {
-        print("selectDevice: \(self.devicesComboBox.indexOfSelectedItem)")
+        print("startCamera: \(self.devicesComboBox.indexOfSelectedItem)")
 
         var webcam: AVCaptureDevice? = nil
         
@@ -154,8 +141,34 @@ class ViewController: NSViewController {
         guard (webcam != nil) else {
             return
         }
-        self.setupCaptureSession(device: webcam!)
-        self.captureSession.startRunning()
+        
+        
+        do {
+            self.captureSession.beginConfiguration()
+            
+            // setup input device again
+            if self.deviceInput != nil {
+                self.captureSession.removeInput(self.deviceInput!)
+            }
+            self.deviceInput = try AVCaptureDeviceInput(device: webcam!)
+            guard (self.deviceInput != nil) else {
+                print("deviceInput invalid -> return")
+                return
+            }
+            if self.captureSession.canAddInput(self.deviceInput!){
+                self.captureSession.addInput(self.deviceInput!)
+                print("---> Adding webcam input")
+            }
+            
+            
+            self.captureSession.commitConfiguration()
+            self.captureSession.startRunning()
+           
+            
+        } catch let err as NSError {
+          print("---> Error startCamera) : \(err)")
+        }
+        
     }
     
     func stopCamera() {
@@ -193,7 +206,7 @@ extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate {
             return
         }
         //print("sampleBuffer size: \(CVPixelBufferGetWidth(cvBuffer)) - \(CVPixelBufferGetHeight(cvBuffer))")
-
+        
         
         //get a CIImage out of the CVImageBuffer
         let ciImage = CIImage(cvImageBuffer: cvBuffer)
@@ -203,20 +216,22 @@ extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate {
         image.addRepresentation(rep)
         
         /*
-        let temporaryContext = CIContext(cgContext: nil)
-        let videoImage: CGImageRef = temporaryContext.crea
-        [temporaryContext
-                                 createCGImage:ciImage
-                                 fromRect:CGRectMake(0, 0,
-                                 ,
-                                 CVPixelBufferGetHeight(imageBuffer))];
-
-               UIImage *image = [[UIImage alloc] initWithCGImage:videoImage];
-        */
+         let temporaryContext = CIContext(cgContext: nil)
+         let videoImage: CGImageRef = temporaryContext.crea
+         [temporaryContext
+         createCGImage:ciImage
+         fromRect:CGRectMake(0, 0,
+         ,
+         CVPixelBufferGetHeight(imageBuffer))];
+         
+         UIImage *image = [[UIImage alloc] initWithCGImage:videoImage];
+         */
         
         //get UIImage out of CIImage
         let qrData: String? = Util().decode(ciImage: ciImage)
-        //print("decoded qrData: \(qrData ?? "no decoded")")
+        if qrData != nil {
+            print("decoded qrData: \(qrData ?? "no decoded")")
+        }
     }
     
     func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
