@@ -378,7 +378,7 @@
 "tlD-Oa-oAM.title" = "Kern";
 
 /* Class = "NSTabViewItem"; label = "Tab"; ObjectID = "uDu-Pp-d4l"; */
-"uDu-Pp-d4l.label" = "Tab";
+"uDu-Pp-d4l.label" = "QrCode";
 
 /* Class = "NSMenu"; title = "CPCodeScanner"; ObjectID = "uQy-DD-JDr"; */
 "uQy-DD-JDr.title" = "CPCodeScanner";

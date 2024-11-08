@@ -807,6 +807,7 @@
                         <outlet property="devicesComboBox" destination="33j-Ln-bUP" id="GRl-cc-Qt0"/>
                         <outlet property="previewView" destination="LHL-ir-q9C" id="coT-G6-N0D"/>
                         <outlet property="qrDataTextField" destination="Pq3-yS-aKA" id="M9h-bA-lfS"/>
+                        <outlet property="scanResultTabView" destination="lHY-t8-HKm" id="Kga-rV-3f2"/>
                         <outlet property="startButton" destination="wMG-7d-K2s" id="GRH-yJ-niK"/>
                     </connections>
                 </viewController>

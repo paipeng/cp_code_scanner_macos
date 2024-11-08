@@ -11,6 +11,8 @@
 		7325064D2CDD91AE004E9C21 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7325064C2CDD91AE004E9C21 /* Localizable.strings */; };
 		732506532CDDB634004E9C21 /* QRCodeScanMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732506522CDDB634004E9C21 /* QRCodeScanMode.swift */; };
 		732506552CDDBCDB004E9C21 /* ScanModeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732506542CDDBCDB004E9C21 /* ScanModeDelegate.swift */; };
+		732506572CDDEBCF004E9C21 /* BaseScanMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732506562CDDEBCF004E9C21 /* BaseScanMode.swift */; };
+		732506592CDDEBDF004E9C21 /* FaceScanMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732506582CDDEBDF004E9C21 /* FaceScanMode.swift */; };
 		73EBA1612CDC4DBB00C26DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */; };
 		73EBA1632CDC4DBB00C26DD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */; };
 		73EBA1662CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1642CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld */; };
@@ -45,6 +47,8 @@
 		732506502CDDB453004E9C21 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		732506522CDDB634004E9C21 /* QRCodeScanMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QRCodeScanMode.swift; path = scanmode/QRCodeScanMode.swift; sourceTree = "<group>"; };
 		732506542CDDBCDB004E9C21 /* ScanModeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScanModeDelegate.swift; path = scanmode/ScanModeDelegate.swift; sourceTree = "<group>"; };
+		732506562CDDEBCF004E9C21 /* BaseScanMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseScanMode.swift; path = scanmode/BaseScanMode.swift; sourceTree = "<group>"; };
+		732506582CDDEBDF004E9C21 /* FaceScanMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FaceScanMode.swift; path = scanmode/FaceScanMode.swift; sourceTree = "<group>"; };
 		73EBA15D2CDC4DBB00C26DD9 /* CPCodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CPCodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 			children = (
 				732506522CDDB634004E9C21 /* QRCodeScanMode.swift */,
 				732506542CDDBCDB004E9C21 /* ScanModeDelegate.swift */,
+				732506562CDDEBCF004E9C21 /* BaseScanMode.swift */,
+				732506582CDDEBDF004E9C21 /* FaceScanMode.swift */,
 			);
 			name = scanmode;
 			sourceTree = "<group>";
@@ -281,6 +287,8 @@
 			files = (
 				73EBA1632CDC4DBB00C26DD9 /* ViewController.swift in Sources */,
 				732506552CDDBCDB004E9C21 /* ScanModeDelegate.swift in Sources */,
+				732506572CDDEBCF004E9C21 /* BaseScanMode.swift in Sources */,
+				732506592CDDEBDF004E9C21 /* FaceScanMode.swift in Sources */,
 				73EBA18F2CDC645400C26DD9 /* PreviewView.swift in Sources */,
 				7325064B2CDC8FB5004E9C21 /* Util.swift in Sources */,
 				732506532CDDB634004E9C21 /* QRCodeScanMode.swift in Sources */,

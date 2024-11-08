@@ -13,18 +13,21 @@ class ViewController: NSViewController {
     var deviceInput: AVCaptureDeviceInput? = nil
     let photoOutput = AVCapturePhotoOutput()
     
-    var scanMode: QRCodeScanMode? = nil
+    var scanMode: BaseScanMode? = nil
     
     @IBOutlet weak var previewView: PreviewView!
     @IBOutlet weak var devicesComboBox: NSComboBox!
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var captureButton: NSButton!
     @IBOutlet weak var qrDataTextField: NSTextField!
+    @IBOutlet weak var scanResultTabView: NSTabView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        scanResultTabView.delegate = self
         
         scanMode = QRCodeScanMode(scanModeName: "", delegate: self)
         self.askPermissionsForCameraFeed()
@@ -250,6 +253,19 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
     }
 }
 
+extension ViewController: NSTabViewDelegate {
+    func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+        print("didSelect tablViewItem: \(tabViewItem?.label)")
+        let index = self.scanResultTabView.indexOfTabViewItem(tabViewItem!)
+        print("selected tabView index: \(index)")
+        
+        if index == 0 {
+            scanMode = QRCodeScanMode(scanModeName: "QrCode", delegate: self)
+        } else {
+            scanMode = FaceScanMode(scanModeName: "Face", delegate: self)
+        }
+    }
+}
 
 extension ViewController : ScanModeDelegate {
     func decodeQRCode(_ qrData: String) {
