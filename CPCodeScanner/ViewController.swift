@@ -13,17 +13,20 @@ class ViewController: NSViewController {
     var deviceInput: AVCaptureDeviceInput? = nil
     let photoOutput = AVCapturePhotoOutput()
     
+    var scanMode: QRCodeScanMode? = nil
+    
     @IBOutlet weak var previewView: PreviewView!
     @IBOutlet weak var devicesComboBox: NSComboBox!
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var captureButton: NSButton!
+    @IBOutlet weak var qrDataTextField: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        
+        scanMode = QRCodeScanMode(scanModeName: "", delegate: self)
         self.askPermissionsForCameraFeed()
         
         //self.previewView.wantsLayer = true
@@ -215,36 +218,7 @@ extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         //print("didOutput")
         
-        guard let cvBuffer: CVImageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-            return
-        }
-        //print("sampleBuffer size: \(CVPixelBufferGetWidth(cvBuffer)) - \(CVPixelBufferGetHeight(cvBuffer))")
-        
-        
-        //get a CIImage out of the CVImageBuffer
-        let ciImage = CIImage(cvImageBuffer: cvBuffer)
-        
-        let rep = NSCIImageRep(ciImage: ciImage)
-        let image = NSImage(size: rep.size)
-        image.addRepresentation(rep)
-        
-        /*
-         let temporaryContext = CIContext(cgContext: nil)
-         let videoImage: CGImageRef = temporaryContext.crea
-         [temporaryContext
-         createCGImage:ciImage
-         fromRect:CGRectMake(0, 0,
-         ,
-         CVPixelBufferGetHeight(imageBuffer))];
-         
-         UIImage *image = [[UIImage alloc] initWithCGImage:videoImage];
-         */
-        
-        //get UIImage out of CIImage
-        let qrData: String? = Util().decode(ciImage: ciImage)
-        if qrData != nil {
-            print("decoded qrData: \(qrData ?? "no decoded")")
-        }
+        scanMode!.captureOutput(sampleBuffer: sampleBuffer)
     }
     
     func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -263,15 +237,8 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
             return
         }
         
-        //let pixelBuffer: CVPixelBuffer =
-        let data = photo.fileDataRepresentation()
         
-        //let rep = NSCIImageRep(ciImage: ciImage)
-        //let image = NSImage(size: rep.size)
-        //image.addRepresentation(rep)
-        let image = NSImage(data: data!)
-        print("image size: \(image!.size)")
-        
+        scanMode!.handleCapturePhoto(photo: photo)
     }
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishCaptureFor resolvedSettings: AVCaptureResolvedPhotoSettings, error: Error?) {
@@ -280,5 +247,13 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
                     print("Error in capture process: \(String(describing: error))")
                     return
                 }
+    }
+}
+
+
+extension ViewController : ScanModeDelegate {
+    func decodeQRCode(_ qrData: String) {
+        print("decodeQRCode: \(qrData)")
+        qrDataTextField.stringValue = qrData
     }
 }

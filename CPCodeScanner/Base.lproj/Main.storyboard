@@ -806,6 +806,7 @@
                         <outlet property="captureButton" destination="ppO-M5-buh" id="rzd-7s-HFb"/>
                         <outlet property="devicesComboBox" destination="33j-Ln-bUP" id="GRl-cc-Qt0"/>
                         <outlet property="previewView" destination="LHL-ir-q9C" id="coT-G6-N0D"/>
+                        <outlet property="qrDataTextField" destination="Pq3-yS-aKA" id="M9h-bA-lfS"/>
                         <outlet property="startButton" destination="wMG-7d-K2s" id="GRH-yJ-niK"/>
                     </connections>
                 </viewController>
