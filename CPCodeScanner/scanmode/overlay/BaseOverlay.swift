@@ -21,4 +21,9 @@ class BaseOverlay : NSView {
         //self.wantsLayer = true
         self.layer?.backgroundColor = NSColor.green.cgColor
     }
+    
+    
+    func drawDetectedRects(rects: [NSRect], imageSize: CGSize) {
+        
+    }
 }

@@ -31,11 +31,11 @@ class QRCodeScanMode : BaseScanMode {
     override func decode(image: CIImage) {
         
         //get UIImage out of CIImage
-        let qrData: String? = Util().decode(ciImage: image)
-        if qrData != nil {
-            print("decoded qrData: \(qrData ?? "no decoded")")
-        }
+        let qrCodes = Util().decode(ciImage: image)
         
-        self.delegate?.decodeQRCode(qrData ?? "no decoded")
+        
+        //self.delegate?.decodeQRCode(qrData ?? "no decoded")
+        
+        (overlay as! QRCodeOverlay).drawDetectedQRCodeBounds(qrCodes: qrCodes, imageSize: image.extent.size )
     }
 }

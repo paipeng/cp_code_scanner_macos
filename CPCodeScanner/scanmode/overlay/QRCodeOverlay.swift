@@ -11,28 +11,45 @@ import AppKit
 
 class QRCodeOverlay : BaseOverlay {
     var qrCodes: [QrCode]?
+    var imageSize: CGSize = CGSize()
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        
-        self.wantsLayer = true
-        self.layer?.backgroundColor = NSColor.green.cgColor
+
+        //self.wantsLayer = true
+        //self.layer?.backgroundColor = NSColor.green.cgColor
         
         
         var qrCodes = [QrCode]()
         let qrCode = QrCode(message: "Test", bounds: NSRect(origin: CGPoint(x: 10, y: 10), size: CGSize(width: 100, height: 100)))
         qrCodes.append(qrCode)
-        self.drawDetectedQRCodeBounds(qrCodes: qrCodes)
+        self.drawDetectedQRCodeBounds(qrCodes: qrCodes, imageSize: CGSize(width: 640, height: 480))
         
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
     }
-    func drawDetectedQRCodeBounds(qrCodes: [QrCode]) {
-        print("drawDetectedQRCodeBounds : \(qrCodes.count)")
+    
+    override func drawDetectedRects(rects: [NSRect], imageSize: CGSize) {
+        super.drawDetectedRects(rects: rects, imageSize: imageSize)
+        self.imageSize = imageSize
+        
+        var qrCodes = [QrCode]()
+        
+        for rect in rects {
+            let qrCode = QrCode(message: "Test", bounds: rect)
+            qrCodes.append(qrCode)
+        }
+        
+        self.drawDetectedQRCodeBounds(qrCodes: qrCodes, imageSize: imageSize)
+    }
+    
+    func drawDetectedQRCodeBounds(qrCodes: [QrCode], imageSize: CGSize) {
+        print("drawDetectedQRCodeBounds : \(qrCodes.count) imageSize: \(imageSize)")
         self.qrCodes = qrCodes
+        self.imageSize = imageSize
+        
         
         self.setNeedsDisplay(self.frame)
     }
@@ -72,9 +89,51 @@ class QRCodeOverlay : BaseOverlay {
         
         for qrCode in self.qrCodes! {
             print("qrcode: \(qrCode.message) -> \(qrCode.bounds)")
-            ctx.stroke(qrCode.bounds!)
+            ctx.stroke(self.convertDrawRect(detectedRect: qrCode.bounds!, previewSize: self.frame.size, imageSize: self.imageSize))
         }
         defer { ctx.restoreGState() }
+        
+    }
+    
+    
+    func convertDrawRect(detectedRect: NSRect, previewSize: CGSize, imageSize: CGSize) -> NSRect {
+        var imageW: CGFloat = 0
+        var imageH: CGFloat = 0
+        var offsetX: CGFloat = 0
+        var offsetY: CGFloat = 0
+        
+        var factor: CGFloat = 1
+        
+        if imageSize.width/imageSize.height >= previewSize.width/previewSize.height {
+            imageW = previewSize.width
+            imageH = imageW * imageSize.height / imageSize.width
+            
+            
+            offsetY = (previewSize.height - imageH) / 2
+            
+            
+            factor = imageSize.width / imageW
+        } else {
+            imageH = previewSize.height
+            imageW = imageH * imageSize.width / imageSize.height
+
+            offsetX = (previewSize.width - imageW) / 2
+            
+            factor = imageSize.height / imageH
+
+        }
+        
+        print("show image size: \(imageH)- \(imageW) offset: \(offsetX)-\(offsetY) factor: \(factor)")
+        
+        var rect = NSRect()
+        rect.origin.x = offsetX + detectedRect.origin.x / factor
+        rect.origin.y = offsetY + detectedRect.origin.y / factor
+        
+        rect.size.width = detectedRect.size.width / factor
+        rect.size.height = detectedRect.size.height / factor
+        
+        print("convertDrawRect: \(rect) from \(detectedRect)")
+        return rect
         
     }
 }
