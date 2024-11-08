@@ -16,6 +16,7 @@
 		7325065C2CDDF8B5004E9C21 /* BaseOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325065B2CDDF8B5004E9C21 /* BaseOverlay.swift */; };
 		7325065E2CDDF8C7004E9C21 /* QRCodeOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325065D2CDDF8C7004E9C21 /* QRCodeOverlay.swift */; };
 		732506602CDDF8DA004E9C21 /* FaceOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325065F2CDDF8DA004E9C21 /* FaceOverlay.swift */; };
+		732506632CDE2131004E9C21 /* QrCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732506622CDE2131004E9C21 /* QrCode.swift */; };
 		73EBA1612CDC4DBB00C26DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */; };
 		73EBA1632CDC4DBB00C26DD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */; };
 		73EBA1662CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1642CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld */; };
@@ -55,6 +56,7 @@
 		7325065B2CDDF8B5004E9C21 /* BaseOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseOverlay.swift; path = scanmode/overlay/BaseOverlay.swift; sourceTree = "<group>"; };
 		7325065D2CDDF8C7004E9C21 /* QRCodeOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QRCodeOverlay.swift; path = scanmode/overlay/QRCodeOverlay.swift; sourceTree = "<group>"; };
 		7325065F2CDDF8DA004E9C21 /* FaceOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FaceOverlay.swift; path = scanmode/overlay/FaceOverlay.swift; sourceTree = "<group>"; };
+		732506622CDE2131004E9C21 /* QrCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QrCode.swift; path = model/QrCode.swift; sourceTree = "<group>"; };
 		73EBA15D2CDC4DBB00C26DD9 /* CPCodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CPCodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,14 @@
 			name = overlay;
 			sourceTree = "<group>";
 		};
+		732506612CDE2121004E9C21 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				732506622CDE2131004E9C21 /* QrCode.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		73EBA1542CDC4DBB00C26DD9 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +150,7 @@
 		73EBA15F2CDC4DBB00C26DD9 /* CPCodeScanner */ = {
 			isa = PBXGroup;
 			children = (
+				732506612CDE2121004E9C21 /* model */,
 				732506512CDDB5B7004E9C21 /* scanmode */,
 				73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */,
 				73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */,
@@ -306,6 +317,7 @@
 				7325065C2CDDF8B5004E9C21 /* BaseOverlay.swift in Sources */,
 				732506552CDDBCDB004E9C21 /* ScanModeDelegate.swift in Sources */,
 				732506572CDDEBCF004E9C21 /* BaseScanMode.swift in Sources */,
+				732506632CDE2131004E9C21 /* QrCode.swift in Sources */,
 				732506592CDDEBDF004E9C21 /* FaceScanMode.swift in Sources */,
 				73EBA18F2CDC645400C26DD9 /* PreviewView.swift in Sources */,
 				7325064B2CDC8FB5004E9C21 /* Util.swift in Sources */,

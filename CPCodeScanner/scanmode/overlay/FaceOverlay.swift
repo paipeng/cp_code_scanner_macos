@@ -12,10 +12,12 @@ import AppKit
 class FaceOverlay : BaseOverlay {
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
+        
+        self.wantsLayer = true
+        self.layer?.backgroundColor = NSColor.blue.cgColor
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.layer?.backgroundColor = NSColor.green.cgColor
     }
 }
