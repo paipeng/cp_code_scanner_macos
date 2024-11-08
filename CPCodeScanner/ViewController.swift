@@ -61,6 +61,7 @@ class ViewController: NSViewController {
             if ((device as AnyObject).hasMediaType(AVMediaType.video)) {
                 print("video device found: \(device)")
                 self.devicesComboBox.addItem(withObjectValue: device.localizedName)
+                self.devicesComboBox.selectItem(at: 0)
             }
         }
     }
