@@ -36,6 +36,10 @@ class QRCodeScanMode : BaseScanMode {
         
         //self.delegate?.decodeQRCode(qrData ?? "no decoded")
         
-        (overlay as! QRCodeOverlay).drawDetectedQRCodeBounds(qrCodes: qrCodes, imageSize: image.extent.size )
+        Task {
+            await MainActor.run { [weak self] in
+                (overlay as! QRCodeOverlay).drawDetectedQRCodeBounds(qrCodes: qrCodes, imageSize: image.extent.size )
+            }
+        }
     }
 }
