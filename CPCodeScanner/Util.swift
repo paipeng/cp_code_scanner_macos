@@ -24,10 +24,11 @@ public class Util {
         //let qrcodeFeature = (features?.first as? CIQRCodeFeature)
         //print("qrcodeFeature: \(qrcodeFeature)")
         //return qrcodeFeature?.messageString
-        
+        //print("features count: \(features?.count)")
         var qrCodes = [QrCode]()
         for feature in features! {
             let qrCode = QrCode(message: (feature as! CIQRCodeFeature).messageString, bounds: (feature as! CIQRCodeFeature).bounds)
+            qrCodes.append(qrCode)
         }
         return qrCodes
     }
