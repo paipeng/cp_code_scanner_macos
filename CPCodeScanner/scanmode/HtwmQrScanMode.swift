@@ -47,7 +47,7 @@ class HtwmQrScanMode : BaseScanMode {
         if qrCodes.count > 0 {
             // crop image area of qrcode
             let qrCode = qrCodes.first
-            let croppedImage = image.crop(to: qrCode!.bounds!)
+            let croppedImage = image.crop(to: qrCode!.bounds!, margin: 40)
             
             // htwm restful to online decoding
             let currentDir = NSHomeDirectory()

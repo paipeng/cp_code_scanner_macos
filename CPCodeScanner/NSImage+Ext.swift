@@ -49,6 +49,49 @@ extension NSImage {
     }
     
     
+    func crop(to rect: CGRect, margin: CGFloat) -> NSImage {
+        var imageRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        
+        var expandRect = rect
+        expandRect.origin.x = expandRect.origin.x - margin
+        expandRect.origin.y = expandRect.origin.y - margin
+        expandRect.size.width = rect.size.width + margin * 2
+        expandRect.size.height = rect.size.height + margin * 2
+        
+        if (expandRect.origin.x < 0) {
+            expandRect.origin.x = 0
+        } else if expandRect.origin.x >= imageRect.width {
+            expandRect.origin.x = imageRect.width - 1
+        }
+        
+        if (expandRect.origin.y < 0) {
+            expandRect.origin.y = 0
+        } else if expandRect.origin.y >= imageRect.height {
+            expandRect.origin.y = imageRect.height - 1
+        }
+        
+        if expandRect.origin.x + expandRect.size.width > imageRect.width {
+            expandRect.size.width = imageRect.width - expandRect.origin.x
+        }
+        
+        if expandRect.origin.x + expandRect.size.width > imageRect.width {
+            expandRect.size.width = imageRect.width - expandRect.origin.x
+        }
+        
+        print("expandRect: \(expandRect)")
+        
+        guard let imageRef = self.cgImage(forProposedRect: &imageRect, context: nil, hints: nil) else {
+            return NSImage(size: rect.size)
+        }
+
+        
+        guard let crop = imageRef.cropping(to: expandRect) else {
+            return NSImage(size: expandRect.size)
+        }
+        return NSImage(cgImage: crop, size: NSZeroSize)
+    }
+    
+    
     public func writePNG(toURL url: URL) {
         guard let data = tiffRepresentation,
               let rep = NSBitmapImageRep(data: data),
