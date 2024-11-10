@@ -18,16 +18,19 @@ class HtwmQrScanMode : BaseScanMode {
     }
     
     override func captureOutput(sampleBuffer: CMSampleBuffer) {
-        super.captureOutput(sampleBuffer: sampleBuffer)
+        //super.captureOutput(sampleBuffer: sampleBuffer)
     }
     
     override func handleCapturePhoto(photo: AVCapturePhoto) {
-        super.handleCapturePhoto(photo: photo)
+        //super.handleCapturePhoto(photo: photo)
+        
+        let image = NSImage(data: photo.fileDataRepresentation()!)
+        print("image size: \(image!.size)")
+        self.decode(image: image!.ciImage()!)
     }
     
     
-    override func decode(image: CIImage) {
-        
+    override func decode(image: CIImage) {        
         //get UIImage out of CIImage
         let qrCodes = Util().decode(ciImage: image)
         

@@ -272,8 +272,10 @@ extension ViewController: NSTabViewDelegate {
         
         if index == 0 {
             scanMode = QRCodeScanMode(scanModeName: "QrCode", overlayRect: rect, delegate: self)
-        } else {
+        } else if index == 1 {
             scanMode = FaceScanMode(scanModeName: "Face", overlayRect: rect, delegate: self)
+        } else {
+            scanMode = HtwmQrScanMode(scanModeName: "HtwmQr", overlayRect: rect, delegate: self)
         }
         
         previewView.addOverlay(overlay: (scanMode?.getOverlay())!)

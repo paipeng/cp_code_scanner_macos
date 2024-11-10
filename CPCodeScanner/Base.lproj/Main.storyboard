@@ -783,9 +783,15 @@
                                             </subviews>
                                         </view>
                                     </tabViewItem>
-                                    <tabViewItem label="View" identifier="" id="bxy-yS-HNW">
+                                    <tabViewItem label="Face" identifier="" id="bxy-yS-HNW">
                                         <view key="view" id="YFx-sX-dPy">
-                                            <rect key="frame" x="10" y="33" width="316" height="450"/>
+                                            <rect key="frame" x="10" y="33" width="314" height="450"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                    </tabViewItem>
+                                    <tabViewItem label="HTWM QR" identifier="" id="kow-cr-SOB">
+                                        <view key="view" id="cQh-vj-DzR">
+                                            <rect key="frame" x="10" y="33" width="314" height="450"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                     </tabViewItem>
