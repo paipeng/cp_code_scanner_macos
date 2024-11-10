@@ -27,36 +27,13 @@ class UserSetting {
     }
     
     
-    open func setUser(user: RestApi.Types.Response.User) {
-        defaults.set(user, forKey: "USER")
+    open func setToken(token: String?) {
+        defaults.set(token, forKey: "TOKEN")
+        
     }
     
-    open func getUser() -> RestApi.Types.Response.User? {
-        let user = defaults.object(forKey: "USER")
-        if user != nil {
-            return user as? RestApi.Types.Response.User
-            /*
-            do {
-                //print("response data: " + str!)
-                let result = try JSONDecoder().decode(RestApi.Types.Response.User.self, from: str!.data(using: .utf8)!)
-                
-                return result
-            } catch {
-                print("Decode failed: \(error)")
-                return nil
-            }
-             */
-        } else {
-            return nil
-        }
-    }
     
     open func getToken() -> String? {
-        if (getUser() != nil) {
-            let user:RestApi.Types.Response.User  = getUser()!
-            return user.token
-        } else {
-            return nil
-        }
+        return defaults.string(forKey: "TOKEN")
     }
 }

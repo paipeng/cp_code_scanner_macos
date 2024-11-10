@@ -303,6 +303,7 @@ extension ViewController : ScanModeDelegate {
 
 extension ViewController {
     func login() {
+        print("userToken: \(UserSetting().getToken())")
         var user: RestApi.Types.Request.User = RestApi.Types.Request.User()
         user.username = "admin"
         user.password = ""
@@ -316,7 +317,7 @@ extension ViewController {
                 case .success(let user):
                     print(user)
                     UserSetting().setUsernamePassword(username: user.username, password: user.password)
-                    UserSetting().setUser(user: user)
+                    UserSetting().setToken(token: user.token)
                 case .failure(let failure):
                     print("failed: \(failure)")
                     
