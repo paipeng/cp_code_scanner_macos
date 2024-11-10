@@ -21,6 +21,7 @@
 		73C5AEE82CE06D83007DD240 /* HtwmQrScanMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5AEE72CE06D83007DD240 /* HtwmQrScanMode.swift */; };
 		73C5AEEA2CE06D99007DD240 /* HtwmQrOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5AEE92CE06D99007DD240 /* HtwmQrOverlay.swift */; };
 		73C5AEEC2CE07120007DD240 /* NSImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5AEEB2CE07120007DD240 /* NSImage+Ext.swift */; };
+		73C5AEEE2CE071CD007DD240 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5AEED2CE071CD007DD240 /* UserSetting.swift */; };
 		73EBA1612CDC4DBB00C26DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */; };
 		73EBA1632CDC4DBB00C26DD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */; };
 		73EBA1662CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1642CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld */; };
@@ -86,6 +87,7 @@
 		73C5AEE72CE06D83007DD240 /* HtwmQrScanMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HtwmQrScanMode.swift; path = scanmode/HtwmQrScanMode.swift; sourceTree = "<group>"; };
 		73C5AEE92CE06D99007DD240 /* HtwmQrOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HtwmQrOverlay.swift; path = scanmode/overlay/HtwmQrOverlay.swift; sourceTree = "<group>"; };
 		73C5AEEB2CE07120007DD240 /* NSImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Ext.swift"; sourceTree = "<group>"; };
+		73C5AEED2CE071CD007DD240 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
 		73EBA15D2CDC4DBB00C26DD9 /* CPCodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CPCodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				7325064A2CDC8FB5004E9C21 /* Util.swift */,
 				7325064C2CDD91AE004E9C21 /* Localizable.strings */,
 				73C5AEEB2CE07120007DD240 /* NSImage+Ext.swift */,
+				73C5AEED2CE071CD007DD240 /* UserSetting.swift */,
 			);
 			path = CPCodeScanner;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				73C5AEEC2CE07120007DD240 /* NSImage+Ext.swift in Sources */,
 				732506602CDDF8DA004E9C21 /* FaceOverlay.swift in Sources */,
 				7325065E2CDDF8C7004E9C21 /* QRCodeOverlay.swift in Sources */,
+				73C5AEEE2CE071CD007DD240 /* UserSetting.swift in Sources */,
 				73EBA1612CDC4DBB00C26DD9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -587,10 +591,12 @@
 				DEVELOPMENT_TEAM = WV9454F626;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This application uses camera for capturing images";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "";
 				"INFOPLIST_KEY_UIRequiredDeviceCapabilities[sdk=*]" = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -616,10 +622,12 @@
 				DEVELOPMENT_TEAM = WV9454F626;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This application uses camera for capturing images";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

@@ -7,6 +7,8 @@
 
 import Cocoa
 import AVFoundation
+import HtwmRestful
+
 class ViewController: NSViewController {
     let captureSession: AVCaptureSession = AVCaptureSession()
     var devices: [AVCaptureDevice]? = nil
@@ -38,6 +40,10 @@ class ViewController: NSViewController {
         //self.previewView.wantsLayer = true
         //self.previewView.layer?.backgroundColor = NSColor.red.cgColor
         print("previewView frame: \(self.previewView.frame)")
+        
+        
+        
+        self.login()
     }
     
     func askPermissionsForCameraFeed() {
@@ -291,6 +297,32 @@ extension ViewController : ScanModeDelegate {
             await MainActor.run { [weak self] in
                 qrDataTextField.stringValue = qrData
             }
+        }
+    }
+}
+
+extension ViewController {
+    func login() {
+        var user: RestApi.Types.Request.User = RestApi.Types.Request.User()
+        user.username = "admin"
+        user.password = ""
+
+        let restClient = RestApi.RestClient(username: "", password: "")
+                
+        restClient.login(body: user) { (result: Result<RestApi.Types.Response.User, RestApi.Types.RestError>) in
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let user):
+                    print(user)
+                    UserSetting().setUsernamePassword(username: user.username, password: user.password)
+                    UserSetting().setUser(user: user)
+                case .failure(let failure):
+                    print("failed: \(failure)")
+                    
+                }
+            }
+            
         }
     }
 }

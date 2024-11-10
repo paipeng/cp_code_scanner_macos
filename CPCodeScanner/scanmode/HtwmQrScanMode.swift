@@ -42,5 +42,12 @@ class HtwmQrScanMode : BaseScanMode {
                 (overlay as! HtwmQrOverlay).drawDetectedQRCodeBounds(qrCodes: qrCodes, imageSize: image.extent.size )
             }
         }
+        
+        
+        // crop image area of qrcode
+        
+        // htwm restful to online decoding
+        
+        // show result in async
     }
 }
