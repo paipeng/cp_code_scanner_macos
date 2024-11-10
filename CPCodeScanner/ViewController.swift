@@ -199,6 +199,12 @@ extension ViewController {
             
             startButton.title = NSLocalizedString("start", comment: "")
             self.stopCamera()
+            
+            
+            let _task = Task {
+                try await Task.sleep(for: .seconds(1))
+                self.scanMode!.clearOverlayRects()
+            }
         } else {
             // Start camera
             startButton.title = NSLocalizedString("stop", comment: "")

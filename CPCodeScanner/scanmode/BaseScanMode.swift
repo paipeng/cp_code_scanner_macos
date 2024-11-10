@@ -45,4 +45,13 @@ class BaseScanMode : NSObject {
     func getOverlay() -> BaseOverlay? {
         return overlay
     }
+    
+    
+    func clearOverlayRects() {
+        Task {
+            await MainActor.run { [weak self] in
+                overlay!.setNeedsDisplay((overlay?.frame)!)
+            }
+        }
+    }
 }
