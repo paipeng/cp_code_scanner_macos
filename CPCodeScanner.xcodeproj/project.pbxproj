@@ -18,6 +18,8 @@
 		732506602CDDF8DA004E9C21 /* FaceOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325065F2CDDF8DA004E9C21 /* FaceOverlay.swift */; };
 		732506632CDE2131004E9C21 /* QrCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732506622CDE2131004E9C21 /* QrCode.swift */; };
 		73C5AEE42CE04F09007DD240 /* libHtwmRestful.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73C5AEDE2CE04EF9007DD240 /* libHtwmRestful.a */; };
+		73C5AEE82CE06D83007DD240 /* HtwmQrScanMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5AEE72CE06D83007DD240 /* HtwmQrScanMode.swift */; };
+		73C5AEEA2CE06D99007DD240 /* HtwmQrOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5AEE92CE06D99007DD240 /* HtwmQrOverlay.swift */; };
 		73EBA1612CDC4DBB00C26DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */; };
 		73EBA1632CDC4DBB00C26DD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */; };
 		73EBA1662CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1642CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld */; };
@@ -80,6 +82,8 @@
 		7325065F2CDDF8DA004E9C21 /* FaceOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FaceOverlay.swift; path = scanmode/overlay/FaceOverlay.swift; sourceTree = "<group>"; };
 		732506622CDE2131004E9C21 /* QrCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QrCode.swift; path = model/QrCode.swift; sourceTree = "<group>"; };
 		73C5AED82CE04EF9007DD240 /* HtwmRestful.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HtwmRestful.xcodeproj; path = ../HtwmRestful/HtwmRestful.xcodeproj; sourceTree = "<group>"; };
+		73C5AEE72CE06D83007DD240 /* HtwmQrScanMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HtwmQrScanMode.swift; path = scanmode/HtwmQrScanMode.swift; sourceTree = "<group>"; };
+		73C5AEE92CE06D99007DD240 /* HtwmQrOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HtwmQrOverlay.swift; path = scanmode/overlay/HtwmQrOverlay.swift; sourceTree = "<group>"; };
 		73EBA15D2CDC4DBB00C26DD9 /* CPCodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CPCodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 			children = (
 				7325065A2CDDF896004E9C21 /* overlay */,
 				732506522CDDB634004E9C21 /* QRCodeScanMode.swift */,
+				73C5AEE72CE06D83007DD240 /* HtwmQrScanMode.swift */,
 				732506542CDDBCDB004E9C21 /* ScanModeDelegate.swift */,
 				732506562CDDEBCF004E9C21 /* BaseScanMode.swift */,
 				732506582CDDEBDF004E9C21 /* FaceScanMode.swift */,
@@ -139,6 +144,7 @@
 				7325065B2CDDF8B5004E9C21 /* BaseOverlay.swift */,
 				7325065D2CDDF8C7004E9C21 /* QRCodeOverlay.swift */,
 				7325065F2CDDF8DA004E9C21 /* FaceOverlay.swift */,
+				73C5AEE92CE06D99007DD240 /* HtwmQrOverlay.swift */,
 			);
 			name = overlay;
 			sourceTree = "<group>";
@@ -385,8 +391,10 @@
 				732506572CDDEBCF004E9C21 /* BaseScanMode.swift in Sources */,
 				732506632CDE2131004E9C21 /* QrCode.swift in Sources */,
 				732506592CDDEBDF004E9C21 /* FaceScanMode.swift in Sources */,
+				73C5AEEA2CE06D99007DD240 /* HtwmQrOverlay.swift in Sources */,
 				73EBA18F2CDC645400C26DD9 /* PreviewView.swift in Sources */,
 				7325064B2CDC8FB5004E9C21 /* Util.swift in Sources */,
+				73C5AEE82CE06D83007DD240 /* HtwmQrScanMode.swift in Sources */,
 				732506532CDDB634004E9C21 /* QRCodeScanMode.swift in Sources */,
 				73EBA1662CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld in Sources */,
 				732506602CDDF8DA004E9C21 /* FaceOverlay.swift in Sources */,
