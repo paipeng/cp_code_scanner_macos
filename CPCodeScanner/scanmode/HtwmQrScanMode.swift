@@ -24,11 +24,38 @@ class HtwmQrScanMode : BaseScanMode {
     override func handleCapturePhoto(photo: AVCapturePhoto) {
         //super.handleCapturePhoto(photo: photo)
         
-        let image = NSImage(data: photo.fileDataRepresentation()!)
-        print("image size: \(image!.size)")
-        self.decode(image: image!.ciImage()!)
+        let image = NSImage.fromAVCapturePhoto(photo: photo)
+        //self.decode(image: image!.ciImage()!)
+        let currentDir = NSHomeDirectory()
+        print("currentDir: \(currentDir)")
+        image!.writePNG(toURL: URL(fileURLWithPath: currentDir + "/Documents/photo.png"))
+        self.decodeImage(image: image!)
     }
     
+    func decodeImage(image: NSImage) {
+        let qrCodes = Util().decode(ciImage: image.ciImage()!)
+        
+        
+        //self.delegate?.decodeQRCode(qrData ?? "no decoded")
+        
+        Task {
+            await MainActor.run { [weak self] in
+                (overlay as! HtwmQrOverlay).drawDetectedQRCodeBounds(qrCodes: qrCodes, imageSize: image.size )
+            }
+        }
+        
+        if qrCodes.count > 0 {
+            // crop image area of qrcode
+            let qrCode = qrCodes.first
+            let croppedImage = image.crop(to: qrCode!.bounds!)
+            
+            // htwm restful to online decoding
+            let currentDir = NSHomeDirectory()
+            croppedImage.writePNG(toURL: URL(fileURLWithPath: currentDir + "/Documents/test.png"))
+            
+            // show result in async
+        }
+    }
     
     override func decode(image: CIImage) {        
         //get UIImage out of CIImage
