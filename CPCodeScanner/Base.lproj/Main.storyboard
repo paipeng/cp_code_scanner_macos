@@ -753,17 +753,17 @@
                                 </connections>
                             </button>
                             <tabView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lHY-t8-HKm">
-                                <rect key="frame" x="675" y="90" width="335" height="496"/>
+                                <rect key="frame" x="675" y="90" width="334" height="496"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Tab" identifier="" id="uDu-Pp-d4l">
                                         <view key="view" id="Oq9-dX-Jpm">
-                                            <rect key="frame" x="10" y="33" width="315" height="450"/>
+                                            <rect key="frame" x="10" y="33" width="314" height="450"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pq3-yS-aKA">
-                                                    <rect key="frame" x="7" y="344" width="291" height="79"/>
+                                                    <rect key="frame" x="7" y="344" width="290" height="79"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="dgh-io-n1T">
                                                         <font key="font" metaFont="system"/>
