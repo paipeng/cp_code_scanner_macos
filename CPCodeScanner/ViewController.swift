@@ -96,14 +96,11 @@ class ViewController: NSViewController {
             // skip
             
             // photo output
-            
             guard captureSession.canAddOutput(photoOutput) else { return }
             captureSession.sessionPreset = .photo
             captureSession.addOutput(photoOutput)
             
             // setup preview
-            
-            
             let previewLayer : AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             previewLayer.frame = (self.previewView.layer?.frame)!
             previewLayer.frame.origin.x = 0
@@ -145,7 +142,7 @@ class ViewController: NSViewController {
             print(device)
             if self.devicesComboBox.indexOfSelectedItem == self.devices!.firstIndex(of: device) {
                 print("selected device found: \(self.devicesComboBox.indexOfSelectedItem)")
-                webcam = device as? AVCaptureDevice
+                webcam = device
                 break
             }
         }
