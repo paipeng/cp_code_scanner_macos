@@ -33,11 +33,13 @@ class FaceScanMode : BaseScanMode {
         print("FaceScanMode decode")
 
         //get UIImage out of CIImage
-        let faceData: String? = Util().detectFace(ciImage: image)
-        if faceData != nil {
-            print("decoded faceData: \(faceData ?? "no decoded")")
-        }
-        
+        let faceFeatures: [CIFaceFeature]? = Util().detectFace(ciImage: image)
         //self.delegate?.decodeQRCode(qrData ?? "no decoded")
+        
+        Task {
+            await MainActor.run { [weak self] in
+                (overlay as! FaceOverlay).drawDetectedFaceBounds(faceFeatures: faceFeatures, imageSize: image.extent.size )
+            }
+        }
     }
 }
