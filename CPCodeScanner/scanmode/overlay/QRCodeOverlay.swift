@@ -19,12 +19,12 @@ class QRCodeOverlay : BaseOverlay {
         //self.wantsLayer = true
         //self.layer?.backgroundColor = NSColor.green.cgColor
         
-        
+        /*
         var qrCodes = [QrCode]()
         let qrCode = QrCode(message: "Test", bounds: NSRect(origin: CGPoint(x: 10, y: 10), size: CGSize(width: 100, height: 100)))
         qrCodes.append(qrCode)
         self.drawDetectedQRCodeBounds(qrCodes: qrCodes, imageSize: CGSize(width: 640, height: 480))
-        
+        */
     }
     
     required init?(coder: NSCoder) {
