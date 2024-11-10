@@ -16,6 +16,22 @@ public class Util {
         //super.init()
     }
     
+    
+    open func printDate(string: String, file: NSString = #file, line: Int = #line, fn: String = #function) {
+#if DEBUG
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss.SSSS"
+        let log = "[\(Thread.current)] \(file.lastPathComponent) \(fn) [\(line)]_\(formatter.string(from: date)): "
+        print(log + " " + string)
+#endif
+    }
+    
+    func getBundle() -> Bundle {
+        return Bundle(identifier: "com.paipeng.CPCodeScanner")!
+    }
+    
+    
     func decode(ciImage: CIImage) -> [QrCode] {
         let detectorOptions = [CIDetectorAccuracy: CIDetectorAccuracyHigh]
         let qrDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: CIContext(), options: detectorOptions)
