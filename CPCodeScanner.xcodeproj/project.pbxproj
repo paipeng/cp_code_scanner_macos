@@ -17,6 +17,7 @@
 		7325065E2CDDF8C7004E9C21 /* QRCodeOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325065D2CDDF8C7004E9C21 /* QRCodeOverlay.swift */; };
 		732506602CDDF8DA004E9C21 /* FaceOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325065F2CDDF8DA004E9C21 /* FaceOverlay.swift */; };
 		732506632CDE2131004E9C21 /* QrCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732506622CDE2131004E9C21 /* QrCode.swift */; };
+		73C5AEE42CE04F09007DD240 /* libHtwmRestful.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73C5AEDE2CE04EF9007DD240 /* libHtwmRestful.a */; };
 		73EBA1612CDC4DBB00C26DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */; };
 		73EBA1632CDC4DBB00C26DD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */; };
 		73EBA1662CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA1642CDC4DBB00C26DD9 /* CPCodeScanner.xcdatamodeld */; };
@@ -29,6 +30,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		73C5AEDD2CE04EF9007DD240 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73C5AED82CE04EF9007DD240 /* HtwmRestful.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 73C5AEB72CE040C8007DD240;
+			remoteInfo = HtwmRestful;
+		};
+		73C5AEDF2CE04EF9007DD240 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73C5AED82CE04EF9007DD240 /* HtwmRestful.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 73C5AECE2CE04921007DD240;
+			remoteInfo = HtwmRestfulTests;
+		};
+		73C5AEE12CE04F04007DD240 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73C5AED82CE04EF9007DD240 /* HtwmRestful.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 73C5AEB62CE040C8007DD240;
+			remoteInfo = HtwmRestful;
+		};
 		73EBA1722CDC4DBE00C26DD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 73EBA1552CDC4DBB00C26DD9 /* Project object */;
@@ -57,6 +79,7 @@
 		7325065D2CDDF8C7004E9C21 /* QRCodeOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QRCodeOverlay.swift; path = scanmode/overlay/QRCodeOverlay.swift; sourceTree = "<group>"; };
 		7325065F2CDDF8DA004E9C21 /* FaceOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FaceOverlay.swift; path = scanmode/overlay/FaceOverlay.swift; sourceTree = "<group>"; };
 		732506622CDE2131004E9C21 /* QrCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QrCode.swift; path = model/QrCode.swift; sourceTree = "<group>"; };
+		73C5AED82CE04EF9007DD240 /* HtwmRestful.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HtwmRestful.xcodeproj; path = ../HtwmRestful/HtwmRestful.xcodeproj; sourceTree = "<group>"; };
 		73EBA15D2CDC4DBB00C26DD9 /* CPCodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CPCodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EBA1602CDC4DBB00C26DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EBA1622CDC4DBB00C26DD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73C5AEE42CE04F09007DD240 /* libHtwmRestful.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,13 +151,31 @@
 			name = model;
 			sourceTree = "<group>";
 		};
+		73C5AED92CE04EF9007DD240 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73C5AEDE2CE04EF9007DD240 /* libHtwmRestful.a */,
+				73C5AEE02CE04EF9007DD240 /* HtwmRestfulTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73C5AEE32CE04F09007DD240 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		73EBA1542CDC4DBB00C26DD9 = {
 			isa = PBXGroup;
 			children = (
+				73C5AED82CE04EF9007DD240 /* HtwmRestful.xcodeproj */,
 				73EBA15F2CDC4DBB00C26DD9 /* CPCodeScanner */,
 				73EBA1742CDC4DBE00C26DD9 /* CPCodeScannerTests */,
 				73EBA17E2CDC4DBF00C26DD9 /* CPCodeScannerUITests */,
 				73EBA15E2CDC4DBB00C26DD9 /* Products */,
+				73C5AEE32CE04F09007DD240 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -196,6 +238,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				73C5AEE22CE04F04007DD240 /* PBXTargetDependency */,
 			);
 			name = CPCodeScanner;
 			productName = CPCodeScanner;
@@ -272,6 +315,12 @@
 			mainGroup = 73EBA1542CDC4DBB00C26DD9;
 			productRefGroup = 73EBA15E2CDC4DBB00C26DD9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 73C5AED92CE04EF9007DD240 /* Products */;
+					ProjectRef = 73C5AED82CE04EF9007DD240 /* HtwmRestful.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				73EBA15C2CDC4DBB00C26DD9 /* CPCodeScanner */,
@@ -280,6 +329,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		73C5AEDE2CE04EF9007DD240 /* libHtwmRestful.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libHtwmRestful.a;
+			remoteRef = 73C5AEDD2CE04EF9007DD240 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		73C5AEE02CE04EF9007DD240 /* HtwmRestfulTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HtwmRestfulTests.xctest;
+			remoteRef = 73C5AEDF2CE04EF9007DD240 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		73EBA15B2CDC4DBB00C26DD9 /* Resources */ = {
@@ -349,6 +415,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		73C5AEE22CE04F04007DD240 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HtwmRestful;
+			targetProxy = 73C5AEE12CE04F04007DD240 /* PBXContainerItemProxy */;
+		};
 		73EBA1732CDC4DBE00C26DD9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 73EBA15C2CDC4DBB00C26DD9 /* CPCodeScanner */;
